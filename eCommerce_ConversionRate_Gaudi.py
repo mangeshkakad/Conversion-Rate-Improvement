@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import seaborn as sns
+#import seaborn as sns
 import matplotlib.pyplot as plt
 
 import torch
@@ -16,13 +16,13 @@ import matplotlib.pyplot as plt
 from habana_frameworks.torch.utils.library_loader import load_habana_module
 load_habana_module()
 import habana_frameworks.torch.core as htcore
-
+import time
 
 # Model Parameters
 EPOCHS = 104
 BATCH_SIZE = 8400
 LEARNING_RATE = 0.001
-TRAIN_MODEL = 0
+TRAIN_MODEL = 1
 
 # Define Custom Dataloaders
 class TrainData(Dataset):
@@ -77,7 +77,7 @@ class BinaryClassification(nn.Module):
 
 def load_data():
     #Load Data
-    df_train = pd.read_csv("./Data/CR NewRelic Combine Data.CSV")
+    df_train = pd.read_csv("./Data/CR_NewRelic_Combine_Data.csv")
     df_train = df_train.loc[:,['Conversion_Status', 'userAgentName','userAgentOS','deviceType','countryCode','avg_duration','avg_timeToDomComplete','avg_timeToDomContentLoadedEventEnd','avg_timeToDomContentLoadedEventStart','avg_timeToLoadEventEnd','Req_Count']]
 
     df_pred = pd.read_csv("./Data/Pred.csv")
@@ -93,8 +93,8 @@ def data_preprocessing(df_train,df_pred):
     df_train['userAgentOS'] = list(le.transform(df_train['userAgentOS']))
     le.fit(df_train['deviceType'])
     df_train['deviceType'] = list(le.transform(df_train['deviceType']))
-    le.fit(df_train['countryCode'])
-    df_train['countryCode'] = list(le.transform(df_train['countryCode']))
+    le.fit(df_train['countryCode'].astype(str))
+    df_train['countryCode'] = list(le.transform(df_train['countryCode'].astype(str)))
 
     le.fit(df_pred['userAgentName'])
     df_pred['userAgentName'] = list(le.transform(df_pred['userAgentName']))
@@ -102,8 +102,8 @@ def data_preprocessing(df_train,df_pred):
     df_pred['userAgentOS'] = list(le.transform(df_pred['userAgentOS']))
     le.fit(df_pred['deviceType'])
     df_pred['deviceType'] = list(le.transform(df_pred['deviceType']))
-    le.fit(df_pred['countryCode'])
-    df_pred['countryCode'] = list(le.transform(df_pred['countryCode']))
+    le.fit(df_pred['countryCode'].astype(str))
+    df_pred['countryCode'] = list(le.transform(df_pred['countryCode'].astype(str)))
 
     return df_train,df_pred
 
@@ -126,7 +126,6 @@ def train_test_pred_data(df_train,df_pred):
     test_data = TestData(torch.FloatTensor(X_test))
     pred_data = TestData(torch.FloatTensor(X_pred))
 
-    #Let’s initialize our dataloaders. We’ll use a batch_size = 1 for our test dataloader.
     train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
     test_loader = DataLoader(dataset=test_data, batch_size=1)
     pred_loader = DataLoader(dataset=pred_data, batch_size=1)
@@ -155,14 +154,16 @@ def build_model(train_loader,test_loader,pred_loader):
     model.to(device)
     print(model)
     criterion = nn.BCEWithLogitsLoss()
-    #optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
+    '''
     try:
        from habana_frameworks.torch.hpex.optimizers import FusedLamb
     except ImportError:
        raise ImportError("Please install habana_torch package")
        optimizer = FusedLamb(model.parameters(), lr=LEARNING_RATE)
-    
+    '''
+    start_time = time.time()
     # Train the model
     model.train()
     for e in range(1, EPOCHS + 1):
@@ -178,15 +179,16 @@ def build_model(train_loader,test_loader,pred_loader):
             acc = binary_acc(y_pred, y_batch.unsqueeze(1))
 
             loss.backward()
-            htcore.mark_step()
             optimizer.step()
+            htcore.mark_step()
 
 
             epoch_loss += loss.item()
             epoch_acc += acc.item()
 
         print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
-        torch.save(model, './Model/eCommerce_ConversionRate')
+        #torch.save(model, './Model/eCommerce_ConversionRate')
+    print("--- %s seconds ---" % (time.time() - start_time))
     return model,device
 
 def read_predictionfile():
@@ -206,8 +208,8 @@ def read_predictionfile():
 
 
 
-def pred_model(device,scaler):
-    model = torch.load('./Model/eCommerce_ConversionRate')
+def pred_model(device,scaler,model):
+    #model = torch.load('./Model/eCommerce_ConversionRate')
 
     df_pred = read_predictionfile()
     X_pred = df_pred.iloc[:, 1:]
@@ -239,8 +241,8 @@ def pred_model(device,scaler):
 
 
 
-def pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count):
-    model = torch.load('./Model/eCommerce_ConversionRate')
+def pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count,model):
+    #model = torch.load('./Model/eCommerce_ConversionRate')
 
     Performance_Gain = [0.00, 0.05, 0.06, 0.07, 0.08]
     Critical_KPIs = ['avg_duration','avg_timeToDomComplete','avg_timeToDomContentLoadedEventEnd','avg_timeToDomContentLoadedEventStart','avg_timeToLoadEventEnd','Req_Count']
@@ -289,17 +291,20 @@ def pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count):
     ind = np.arange(N) 
     width = 0.25
     
-    fig = plt.figure(figsize=(12, 8))
+    #fig = plt.figure(figsize=(12, 8))
 
     for kpi,values in improvement_dict.items():
-        plt.bar(ind, values, width, label=kpi)
-        ind = ind + width
+        print(kpi)
+        print(values)
+        print(list(x))
+        #plt.bar(ind, values, width, label=kpi)
+        #ind = ind + width
     
-    plt.ylabel('CR Improvement')
-    plt.xticks((ind + width) + 0.15    , ('5%', '6%', '7%', '8%',''))
-    plt.legend(loc='best')
+    #plt.ylabel('CR Improvement')
+    #plt.xticks((ind + width) + 0.15    , ('5%', '6%', '7%', '8%',''))
+    #plt.legend(loc='best')
     #plt.show()
-    plt.savefig('./Charts/CR Improvement.PNG')
+    #plt.savefig('./Charts/CR_Improvement.PNG')
 
 
         
@@ -309,10 +314,12 @@ def main():
         df_train,df_pred = data_preprocessing(df_train,df_pred)
         train_loader,test_loader,pred_loader,scaler = train_test_pred_data(df_train,df_pred)
         model,device = build_model(train_loader,test_loader,pred_loader)
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    #device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("hpu")
+
     scaler = StandardScaler()
-    No_Conversion_Pred_Count = pred_model(device,scaler)
-    pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count)
+    No_Conversion_Pred_Count = pred_model(device,scaler,model)
+    pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count,model)
         
 if __name__ == "__main__":
    main()
