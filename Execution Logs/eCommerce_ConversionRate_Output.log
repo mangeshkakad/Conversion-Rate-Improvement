@@ -1,10 +1,5 @@
-ubuntu@ip-172-31-80-59:~/Conversion-Rate-Improvement-main$ /usr/bin/python3.7 eCommerce_ConversionRate_Gaudi.py
-Loading Habana modules from /usr/lib/habanalabs/
-
-
-hpu
-
-
+run eCommerce_ConversionRate.py
+cuda:0
 BinaryClassification(
   (layer_1): Linear(in_features=10, out_features=8400, bias=True)
   (layer_2): Linear(in_features=8400, out_features=8400, bias=True)
@@ -16,125 +11,108 @@ BinaryClassification(
   (batchnorm2): BatchNorm1d(8400, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
   (batchnorm3): BatchNorm1d(8400, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
 )
-
-
-
-
-Epoch 001: | Loss: 3.14147 | Acc: 54.778
-Epoch 002: | Loss: 0.97843 | Acc: 55.111
-Epoch 003: | Loss: 0.76282 | Acc: 62.111
-Epoch 004: | Loss: 0.68115 | Acc: 63.111
-Epoch 005: | Loss: 0.64153 | Acc: 64.111
-Epoch 006: | Loss: 0.62324 | Acc: 65.889
-Epoch 007: | Loss: 0.61512 | Acc: 66.667
-Epoch 008: | Loss: 0.60862 | Acc: 67.333
-Epoch 009: | Loss: 0.60436 | Acc: 67.556
-Epoch 010: | Loss: 0.59650 | Acc: 68.667
-Epoch 011: | Loss: 0.59146 | Acc: 68.778
-Epoch 012: | Loss: 0.58424 | Acc: 69.889
-Epoch 013: | Loss: 0.57780 | Acc: 70.111
-Epoch 014: | Loss: 0.57290 | Acc: 71.000
-Epoch 015: | Loss: 0.57323 | Acc: 70.667
-Epoch 016: | Loss: 0.56945 | Acc: 71.222
-Epoch 017: | Loss: 0.56353 | Acc: 71.333
-Epoch 018: | Loss: 0.56043 | Acc: 71.444
-Epoch 019: | Loss: 0.56551 | Acc: 71.000
-Epoch 020: | Loss: 0.55993 | Acc: 71.667
-Epoch 021: | Loss: 0.55373 | Acc: 71.778
-Epoch 022: | Loss: 0.55714 | Acc: 71.889
-Epoch 023: | Loss: 0.54603 | Acc: 72.333
-Epoch 024: | Loss: 0.54578 | Acc: 72.222
-Epoch 025: | Loss: 0.54178 | Acc: 72.667
-Epoch 026: | Loss: 0.54200 | Acc: 72.667
-Epoch 027: | Loss: 0.54025 | Acc: 72.444
-Epoch 028: | Loss: 0.53878 | Acc: 72.889
-Epoch 029: | Loss: 0.53330 | Acc: 73.333
-Epoch 030: | Loss: 0.53194 | Acc: 73.111
-Epoch 031: | Loss: 0.53742 | Acc: 72.889
-Epoch 032: | Loss: 0.53349 | Acc: 73.333
-Epoch 033: | Loss: 0.53498 | Acc: 73.222
-Epoch 034: | Loss: 0.53133 | Acc: 73.444
-Epoch 035: | Loss: 0.53075 | Acc: 73.444
-Epoch 036: | Loss: 0.52902 | Acc: 73.444
-Epoch 037: | Loss: 0.52184 | Acc: 74.111
-Epoch 038: | Loss: 0.52890 | Acc: 73.444
-Epoch 039: | Loss: 0.52668 | Acc: 73.444
-Epoch 040: | Loss: 0.52371 | Acc: 73.889
-Epoch 041: | Loss: 0.52560 | Acc: 74.000
-Epoch 042: | Loss: 0.52227 | Acc: 73.889
-Epoch 043: | Loss: 0.52032 | Acc: 74.333
-Epoch 044: | Loss: 0.52442 | Acc: 73.778
-Epoch 045: | Loss: 0.52173 | Acc: 74.111
-Epoch 046: | Loss: 0.52104 | Acc: 74.222
-Epoch 047: | Loss: 0.51900 | Acc: 74.444
-Epoch 048: | Loss: 0.52197 | Acc: 74.333
-Epoch 049: | Loss: 0.52008 | Acc: 74.333
-Epoch 050: | Loss: 0.51935 | Acc: 74.222
-Epoch 051: | Loss: 0.52156 | Acc: 74.222
-Epoch 052: | Loss: 0.53171 | Acc: 73.778
-Epoch 053: | Loss: 0.51930 | Acc: 74.333
-Epoch 054: | Loss: 0.51604 | Acc: 74.778
-Epoch 055: | Loss: 0.51663 | Acc: 74.333
-Epoch 056: | Loss: 0.51451 | Acc: 74.556
-Epoch 057: | Loss: 0.51920 | Acc: 74.333
-Epoch 058: | Loss: 0.51673 | Acc: 74.667
-Epoch 059: | Loss: 0.51254 | Acc: 74.778
-Epoch 060: | Loss: 0.51672 | Acc: 74.444
-Epoch 061: | Loss: 0.52105 | Acc: 74.333
-Epoch 062: | Loss: 0.51586 | Acc: 74.556
-Epoch 063: | Loss: 0.51575 | Acc: 74.556
-Epoch 064: | Loss: 0.51730 | Acc: 74.444
-Epoch 065: | Loss: 0.51222 | Acc: 74.778
-Epoch 066: | Loss: 0.50976 | Acc: 75.111
-Epoch 067: | Loss: 0.50848 | Acc: 74.889
-Epoch 068: | Loss: 0.50774 | Acc: 75.111
-Epoch 069: | Loss: 0.50844 | Acc: 74.889
-Epoch 070: | Loss: 0.50826 | Acc: 74.889
-Epoch 071: | Loss: 0.50742 | Acc: 74.889
-Epoch 072: | Loss: 0.51182 | Acc: 74.889
-Epoch 073: | Loss: 0.51855 | Acc: 74.556
-Epoch 074: | Loss: 0.51625 | Acc: 74.444
-Epoch 075: | Loss: 0.51256 | Acc: 74.778
-Epoch 076: | Loss: 0.51008 | Acc: 74.778
-Epoch 077: | Loss: 0.51790 | Acc: 74.556
-Epoch 078: | Loss: 0.51216 | Acc: 74.778
-Epoch 079: | Loss: 0.51557 | Acc: 74.778
-Epoch 080: | Loss: 0.51217 | Acc: 74.778
-Epoch 081: | Loss: 0.51241 | Acc: 75.000
-Epoch 082: | Loss: 0.52000 | Acc: 74.778
-Epoch 083: | Loss: 0.51330 | Acc: 74.778
-Epoch 084: | Loss: 0.51238 | Acc: 74.778
-Epoch 085: | Loss: 0.50991 | Acc: 74.667
-Epoch 086: | Loss: 0.50806 | Acc: 74.778
-Epoch 087: | Loss: 0.50841 | Acc: 75.000
-Epoch 088: | Loss: 0.50628 | Acc: 75.111
-Epoch 089: | Loss: 0.50824 | Acc: 75.000
-Epoch 090: | Loss: 0.50800 | Acc: 75.000
-Epoch 091: | Loss: 0.50803 | Acc: 75.000
-Epoch 092: | Loss: 0.50824 | Acc: 74.778
-Epoch 093: | Loss: 0.50712 | Acc: 75.111
-Epoch 094: | Loss: 0.50683 | Acc: 75.222
-Epoch 095: | Loss: 0.50487 | Acc: 75.222
-Epoch 096: | Loss: 0.50455 | Acc: 75.333
-Epoch 097: | Loss: 0.50805 | Acc: 75.111
-Epoch 098: | Loss: 0.51387 | Acc: 74.778
-Epoch 099: | Loss: 0.51001 | Acc: 74.889
-Epoch 100: | Loss: 0.51851 | Acc: 74.333
-Epoch 101: | Loss: 0.50807 | Acc: 75.111
-Epoch 102: | Loss: 0.50691 | Acc: 75.111
-Epoch 103: | Loss: 0.50824 | Acc: 75.111
-Epoch 104: | Loss: 0.50599 | Acc: 75.111
---- 635.5106883049011 seconds ---
-
-
-avg_timeToDomComplete
-[0.0, 0.83, 0.83, 0.0, 0.0]
-['0%', '5%', '6%', '7%', '8%']
-
-avg_timeToDomContentLoadedEventStart
-[0.0, 0.83, 0.83, 1.67, 1.67]
-['0%', '5%', '6%', '7%', '8%']
-
-avg_timeToLoadEventEnd
-[0.0, 1.67, 3.33, 4.17, 5.83]
-['0%', '5%', '6%', '7%', '8%']
+Epoch 001: | Loss: 3.77960 | Acc: 53.889
+Epoch 002: | Loss: 1.24824 | Acc: 54.333
+Epoch 003: | Loss: 0.78914 | Acc: 58.667
+Epoch 004: | Loss: 0.69359 | Acc: 64.000
+Epoch 005: | Loss: 0.64323 | Acc: 63.556
+Epoch 006: | Loss: 0.62860 | Acc: 65.444
+Epoch 007: | Loss: 0.61579 | Acc: 66.667
+Epoch 008: | Loss: 0.60958 | Acc: 67.333
+Epoch 009: | Loss: 0.60379 | Acc: 67.889
+Epoch 010: | Loss: 0.59804 | Acc: 67.889
+Epoch 011: | Loss: 0.59137 | Acc: 68.889
+Epoch 012: | Loss: 0.58357 | Acc: 69.889
+Epoch 013: | Loss: 0.57701 | Acc: 70.556
+Epoch 014: | Loss: 0.56867 | Acc: 71.222
+Epoch 015: | Loss: 0.56468 | Acc: 71.333
+Epoch 016: | Loss: 0.56077 | Acc: 71.556
+Epoch 017: | Loss: 0.55864 | Acc: 71.778
+Epoch 018: | Loss: 0.55697 | Acc: 71.778
+Epoch 019: | Loss: 0.54840 | Acc: 72.111
+Epoch 020: | Loss: 0.54802 | Acc: 72.222
+Epoch 021: | Loss: 0.54535 | Acc: 72.111
+Epoch 022: | Loss: 0.54406 | Acc: 72.444
+Epoch 023: | Loss: 0.54027 | Acc: 72.667
+Epoch 024: | Loss: 0.53913 | Acc: 72.667
+Epoch 025: | Loss: 0.53812 | Acc: 72.778
+Epoch 026: | Loss: 0.53659 | Acc: 72.889
+Epoch 027: | Loss: 0.53617 | Acc: 72.889
+Epoch 028: | Loss: 0.54686 | Acc: 72.222
+Epoch 029: | Loss: 0.53960 | Acc: 72.778
+Epoch 030: | Loss: 0.53206 | Acc: 73.222
+Epoch 031: | Loss: 0.53285 | Acc: 73.111
+Epoch 032: | Loss: 0.52987 | Acc: 73.556
+Epoch 033: | Loss: 0.53028 | Acc: 73.556
+Epoch 034: | Loss: 0.52673 | Acc: 73.667
+Epoch 035: | Loss: 0.52571 | Acc: 73.556
+Epoch 036: | Loss: 0.52717 | Acc: 73.667
+Epoch 037: | Loss: 0.52594 | Acc: 73.778
+Epoch 038: | Loss: 0.52453 | Acc: 73.889
+Epoch 039: | Loss: 0.52508 | Acc: 73.889
+Epoch 040: | Loss: 0.52222 | Acc: 74.111
+Epoch 041: | Loss: 0.52136 | Acc: 73.889
+Epoch 042: | Loss: 0.52237 | Acc: 74.000
+Epoch 043: | Loss: 0.52206 | Acc: 73.889
+Epoch 044: | Loss: 0.52091 | Acc: 74.111
+Epoch 045: | Loss: 0.51961 | Acc: 74.000
+Epoch 046: | Loss: 0.52114 | Acc: 74.111
+Epoch 047: | Loss: 0.52156 | Acc: 74.111
+Epoch 048: | Loss: 0.52001 | Acc: 74.333
+Epoch 049: | Loss: 0.52164 | Acc: 74.333
+Epoch 050: | Loss: 0.51828 | Acc: 74.111
+Epoch 051: | Loss: 0.52536 | Acc: 74.000
+Epoch 052: | Loss: 0.52577 | Acc: 73.778
+Epoch 053: | Loss: 0.51757 | Acc: 74.556
+Epoch 054: | Loss: 0.51402 | Acc: 74.556
+Epoch 055: | Loss: 0.51544 | Acc: 74.556
+Epoch 056: | Loss: 0.51444 | Acc: 74.667
+Epoch 057: | Loss: 0.51575 | Acc: 74.667
+Epoch 058: | Loss: 0.51750 | Acc: 74.444
+Epoch 059: | Loss: 0.51275 | Acc: 74.556
+Epoch 060: | Loss: 0.52133 | Acc: 74.111
+Epoch 061: | Loss: 0.52025 | Acc: 74.111
+Epoch 062: | Loss: 0.51644 | Acc: 74.444
+Epoch 063: | Loss: 0.51873 | Acc: 74.444
+Epoch 064: | Loss: 0.51559 | Acc: 74.556
+Epoch 065: | Loss: 0.51351 | Acc: 74.778
+Epoch 066: | Loss: 0.51691 | Acc: 74.333
+Epoch 067: | Loss: 0.51389 | Acc: 74.778
+Epoch 068: | Loss: 0.51754 | Acc: 74.444
+Epoch 069: | Loss: 0.51656 | Acc: 74.444
+Epoch 070: | Loss: 0.51876 | Acc: 74.444
+Epoch 071: | Loss: 0.51510 | Acc: 74.556
+Epoch 072: | Loss: 0.51535 | Acc: 74.556
+Epoch 073: | Loss: 0.51626 | Acc: 74.333
+Epoch 074: | Loss: 0.50821 | Acc: 75.000
+Epoch 075: | Loss: 0.50953 | Acc: 74.889
+Epoch 076: | Loss: 0.50975 | Acc: 75.000
+Epoch 077: | Loss: 0.50911 | Acc: 75.111
+Epoch 078: | Loss: 0.50658 | Acc: 74.778
+Epoch 079: | Loss: 0.51008 | Acc: 75.000
+Epoch 080: | Loss: 0.51743 | Acc: 74.333
+Epoch 081: | Loss: 0.50932 | Acc: 74.889
+Epoch 082: | Loss: 0.51320 | Acc: 74.667
+Epoch 083: | Loss: 0.50999 | Acc: 74.889
+Epoch 084: | Loss: 0.50784 | Acc: 75.000
+Epoch 085: | Loss: 0.51140 | Acc: 74.667
+Epoch 086: | Loss: 0.51056 | Acc: 74.778
+Epoch 087: | Loss: 0.50838 | Acc: 75.222
+Epoch 088: | Loss: 0.50881 | Acc: 74.778
+Epoch 089: | Loss: 0.50549 | Acc: 75.111
+Epoch 090: | Loss: 0.50645 | Acc: 75.111
+Epoch 091: | Loss: 0.50663 | Acc: 75.111
+Epoch 092: | Loss: 0.50444 | Acc: 75.222
+Epoch 093: | Loss: 0.51123 | Acc: 74.778
+Epoch 094: | Loss: 0.51022 | Acc: 75.000
+Epoch 095: | Loss: 0.50524 | Acc: 75.111
+Epoch 096: | Loss: 0.50569 | Acc: 75.222
+Epoch 097: | Loss: 0.50765 | Acc: 74.889
+Epoch 098: | Loss: 0.50853 | Acc: 75.111
+Epoch 099: | Loss: 0.50875 | Acc: 75.111
+Epoch 100: | Loss: 0.50744 | Acc: 75.222
+Epoch 101: | Loss: 0.50715 | Acc: 75.111
+Epoch 102: | Loss: 0.50600 | Acc: 75.333
+Epoch 103: | Loss: 0.50341 | Acc: 75.333
+Epoch 104: | Loss: 0.50240 | Acc: 75.556
+--- 2602.2365729808807 seconds ---
