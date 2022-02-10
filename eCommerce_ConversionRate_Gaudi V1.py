@@ -15,6 +15,10 @@ from sklearn import preprocessing
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 
+from habana_frameworks.torch.utils.library_loader import load_habana_module
+load_habana_module()
+import habana_frameworks.torch.core as htcore
+
 
 import time
 
@@ -192,6 +196,7 @@ def build_model(train_loader,validation_loader,pred_loader):
 
             train_loss.backward()
             optimizer.step()
+            htcore.mark_step()
 
             epoch_loss += train_loss.item()
             epoch_acc += acc.item()
