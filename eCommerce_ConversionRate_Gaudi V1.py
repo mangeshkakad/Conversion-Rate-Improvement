@@ -166,8 +166,8 @@ def binary_acc(y_pred, y_test):
 
 def build_model(train_loader,validation_loader,pred_loader):
     # Check if GPU cuda is available to run model on
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    print(device)
+    #device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("hpu")
 
     # Define model and set OPtimizer
     model = BinaryClassification()
@@ -206,7 +206,7 @@ def build_model(train_loader,validation_loader,pred_loader):
         #New code  
         valid_loss = 0.0
         model.eval()     # Optional when not using Model Specific layer
-        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        device = torch.device("hpu")
         for X_batch,y_batch in validation_loader:
             X_batch, y_batch = X_batch.to(device), y_batch.to(device)
             target = model(X_batch)
@@ -397,7 +397,7 @@ def main():
         df_train,df_pred = data_preprocessing(df_train,df_pred)
         train_loader,test_loader,pred_loader,scaler = train_test_pred_data(df_train,df_pred)
         model,device = build_model(train_loader,test_loader,pred_loader)
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device("hpu")
     scaler = StandardScaler()
     #No_Conversion_Pred_Count = validation_model(device,scaler)
     No_Conversion_Pred_Count = pred_model(device,scaler)
