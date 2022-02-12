@@ -183,6 +183,7 @@ def build_model(train_loader,validation_loader,pred_loader):
     # Train the model
     model.train()
     for e in range(1, EPOCHS + 1):
+        device = torch.device("hpu")
         epoch_loss = 0
         epoch_acc = 0
         for X_batch, y_batch in train_loader:
@@ -208,6 +209,8 @@ def build_model(train_loader,validation_loader,pred_loader):
         model.eval()     # Optional when not using Model Specific layer
         device = torch.device("hpu")
         for X_batch,y_batch in validation_loader:
+            device = torch.device("hpu")
+
             X_batch, y_batch = X_batch.to(device), y_batch.to(device)
             target = model(X_batch)
             valid_loss = criterion(target, y_batch.unsqueeze(1))
@@ -217,16 +220,20 @@ def build_model(train_loader,validation_loader,pred_loader):
         #print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
 
         if min_valid_loss > valid_loss:
-            #print(f'Validation Loss Decreased({min_valid_loss:.6f}--->{valid_loss:.6f}) \t Saving The Model')
-            print(valid_loss)
+            #print(str(min_valid_loss) +"---->" +str(valid_loss) +"Saving The Model")
+            #print(valid_loss)
             min_valid_loss = valid_loss
             # Saving State Dict
-            #torch.save(model, './Model/eCommerce_ConversionRate_New')
+            #device=torch.device("cpu")
+            #torch.save(model.state_dict(), './Model/eCommerce_ConversionRate_New')
+            #device=torch.device("hpu")
+            model1 = model
+            print("Saving Model....")
         #print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
 
     #torch.save(model, '/home/studio-lab-user/eCommerce Conversion Rate Improvement/MODEL/eCommerce_ConversionRate_New')
     print("--- %s seconds ---" % (time.time() - start_time))
-    return model,device
+    return model1,device
 
 def read_predictionfile(filename):
     le = preprocessing.LabelEncoder()
@@ -247,8 +254,8 @@ def read_predictionfile(filename):
 
 
 
-def pred_model(device,scaler):
-    model = torch.load('./Model/eCommerce_ConversionRate_New')
+def pred_model(model,device,scaler):
+    #model = torch.load('./Model/eCommerce_ConversionRate_New')
     print(model)
 
     df_pred = read_predictionfile("./Data/Pred.csv")
@@ -279,8 +286,8 @@ def pred_model(device,scaler):
 
 
 
-def validation_model(device,scaler):
-    model = torch.load('./Model/eCommerce_ConversionRate_New')
+def validation_model(model,device,scaler):
+    #model = torch.load('./Model/eCommerce_ConversionRate_New')
     print(model)
 
     df_pred = read_predictionfile("./Data/Pred.csv")
@@ -310,8 +317,8 @@ def validation_model(device,scaler):
 
 
 
-def pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count):
-    model = torch.load('./Model/eCommerce_ConversionRate_New')
+def pred_conversion_rate_impact(model,device,scaler,No_Conversion_Pred_Count):
+    #model = torch.load('./Model/eCommerce_ConversionRate_New')
 
     Performance_Gain = [0.00, 0.02, 0.03, 0.04, 0.05,0.06]
     #Performance_Gain = [0.00]
@@ -363,6 +370,8 @@ def pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count):
         x = np.array(["0%", "2%", "3%", "4%", "5%","6%"])
         max_improvement = max(Conversion_Rate_Improvement_List)
         min_improvement = min(Conversion_Rate_Improvement_List)
+        print(col)
+        print(Conversion_Rate_Improvement_List)
         if (min_improvement >= 0 and max_improvement > 0 ):
                 improvement_dict[col] = Conversion_Rate_Improvement_List
                 Data[col] = pd.Series(Conversion_Rate_Improvement_List)
@@ -372,7 +381,7 @@ def pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count):
     max_cr_kpis = sorted(max_cr_dict, key=max_cr_dict.get, reverse=True)[:3]
 
     improvement_dict = { select_max_kpis: improvement_dict[select_max_kpis] for select_max_kpis in max_cr_kpis }
-
+    print(improvement_dict)
     '''
     #print(improvement_dict)
     N = 6
@@ -402,8 +411,8 @@ def main():
     device = torch.device("hpu")
     scaler = StandardScaler()
     #No_Conversion_Pred_Count = validation_model(device,scaler)
-    No_Conversion_Pred_Count = pred_model(device,scaler)
-    pred_conversion_rate_impact(device,scaler,No_Conversion_Pred_Count)
+    No_Conversion_Pred_Count = pred_model(model,device,scaler)
+    pred_conversion_rate_impact(model,device,scaler,No_Conversion_Pred_Count)
 
 if __name__ == "__main__":
    main()
