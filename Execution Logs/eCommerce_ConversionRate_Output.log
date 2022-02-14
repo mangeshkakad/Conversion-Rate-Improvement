@@ -1,118 +1,85 @@
 run eCommerce_ConversionRate.py
 cuda:0
 BinaryClassification(
-  (layer_1): Linear(in_features=10, out_features=8400, bias=True)
-  (layer_2): Linear(in_features=8400, out_features=8400, bias=True)
-  (layer_3): Linear(in_features=8400, out_features=8400, bias=True)
-  (layer_out): Linear(in_features=8400, out_features=1, bias=True)
+  (layer_1): Linear(in_features=46, out_features=32, bias=True)
+  (layer_2): Linear(in_features=32, out_features=32, bias=True)
+  (layer_3): Linear(in_features=32, out_features=32, bias=True)
+  (layer_out): Linear(in_features=32, out_features=1, bias=True)
   (relu): ReLU()
   (dropout): Dropout(p=0.1, inplace=False)
-  (batchnorm1): BatchNorm1d(8400, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-  (batchnorm2): BatchNorm1d(8400, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-  (batchnorm3): BatchNorm1d(8400, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (batchnorm1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (batchnorm2): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (batchnorm3): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
 )
-Epoch 001: | Loss: 3.77960 | Acc: 53.889
-Epoch 002: | Loss: 1.24824 | Acc: 54.333
-Epoch 003: | Loss: 0.78914 | Acc: 58.667
-Epoch 004: | Loss: 0.69359 | Acc: 64.000
-Epoch 005: | Loss: 0.64323 | Acc: 63.556
-Epoch 006: | Loss: 0.62860 | Acc: 65.444
-Epoch 007: | Loss: 0.61579 | Acc: 66.667
-Epoch 008: | Loss: 0.60958 | Acc: 67.333
-Epoch 009: | Loss: 0.60379 | Acc: 67.889
-Epoch 010: | Loss: 0.59804 | Acc: 67.889
-Epoch 011: | Loss: 0.59137 | Acc: 68.889
-Epoch 012: | Loss: 0.58357 | Acc: 69.889
-Epoch 013: | Loss: 0.57701 | Acc: 70.556
-Epoch 014: | Loss: 0.56867 | Acc: 71.222
-Epoch 015: | Loss: 0.56468 | Acc: 71.333
-Epoch 016: | Loss: 0.56077 | Acc: 71.556
-Epoch 017: | Loss: 0.55864 | Acc: 71.778
-Epoch 018: | Loss: 0.55697 | Acc: 71.778
-Epoch 019: | Loss: 0.54840 | Acc: 72.111
-Epoch 020: | Loss: 0.54802 | Acc: 72.222
-Epoch 021: | Loss: 0.54535 | Acc: 72.111
-Epoch 022: | Loss: 0.54406 | Acc: 72.444
-Epoch 023: | Loss: 0.54027 | Acc: 72.667
-Epoch 024: | Loss: 0.53913 | Acc: 72.667
-Epoch 025: | Loss: 0.53812 | Acc: 72.778
-Epoch 026: | Loss: 0.53659 | Acc: 72.889
-Epoch 027: | Loss: 0.53617 | Acc: 72.889
-Epoch 028: | Loss: 0.54686 | Acc: 72.222
-Epoch 029: | Loss: 0.53960 | Acc: 72.778
-Epoch 030: | Loss: 0.53206 | Acc: 73.222
-Epoch 031: | Loss: 0.53285 | Acc: 73.111
-Epoch 032: | Loss: 0.52987 | Acc: 73.556
-Epoch 033: | Loss: 0.53028 | Acc: 73.556
-Epoch 034: | Loss: 0.52673 | Acc: 73.667
-Epoch 035: | Loss: 0.52571 | Acc: 73.556
-Epoch 036: | Loss: 0.52717 | Acc: 73.667
-Epoch 037: | Loss: 0.52594 | Acc: 73.778
-Epoch 038: | Loss: 0.52453 | Acc: 73.889
-Epoch 039: | Loss: 0.52508 | Acc: 73.889
-Epoch 040: | Loss: 0.52222 | Acc: 74.111
-Epoch 041: | Loss: 0.52136 | Acc: 73.889
-Epoch 042: | Loss: 0.52237 | Acc: 74.000
-Epoch 043: | Loss: 0.52206 | Acc: 73.889
-Epoch 044: | Loss: 0.52091 | Acc: 74.111
-Epoch 045: | Loss: 0.51961 | Acc: 74.000
-Epoch 046: | Loss: 0.52114 | Acc: 74.111
-Epoch 047: | Loss: 0.52156 | Acc: 74.111
-Epoch 048: | Loss: 0.52001 | Acc: 74.333
-Epoch 049: | Loss: 0.52164 | Acc: 74.333
-Epoch 050: | Loss: 0.51828 | Acc: 74.111
-Epoch 051: | Loss: 0.52536 | Acc: 74.000
-Epoch 052: | Loss: 0.52577 | Acc: 73.778
-Epoch 053: | Loss: 0.51757 | Acc: 74.556
-Epoch 054: | Loss: 0.51402 | Acc: 74.556
-Epoch 055: | Loss: 0.51544 | Acc: 74.556
-Epoch 056: | Loss: 0.51444 | Acc: 74.667
-Epoch 057: | Loss: 0.51575 | Acc: 74.667
-Epoch 058: | Loss: 0.51750 | Acc: 74.444
-Epoch 059: | Loss: 0.51275 | Acc: 74.556
-Epoch 060: | Loss: 0.52133 | Acc: 74.111
-Epoch 061: | Loss: 0.52025 | Acc: 74.111
-Epoch 062: | Loss: 0.51644 | Acc: 74.444
-Epoch 063: | Loss: 0.51873 | Acc: 74.444
-Epoch 064: | Loss: 0.51559 | Acc: 74.556
-Epoch 065: | Loss: 0.51351 | Acc: 74.778
-Epoch 066: | Loss: 0.51691 | Acc: 74.333
-Epoch 067: | Loss: 0.51389 | Acc: 74.778
-Epoch 068: | Loss: 0.51754 | Acc: 74.444
-Epoch 069: | Loss: 0.51656 | Acc: 74.444
-Epoch 070: | Loss: 0.51876 | Acc: 74.444
-Epoch 071: | Loss: 0.51510 | Acc: 74.556
-Epoch 072: | Loss: 0.51535 | Acc: 74.556
-Epoch 073: | Loss: 0.51626 | Acc: 74.333
-Epoch 074: | Loss: 0.50821 | Acc: 75.000
-Epoch 075: | Loss: 0.50953 | Acc: 74.889
-Epoch 076: | Loss: 0.50975 | Acc: 75.000
-Epoch 077: | Loss: 0.50911 | Acc: 75.111
-Epoch 078: | Loss: 0.50658 | Acc: 74.778
-Epoch 079: | Loss: 0.51008 | Acc: 75.000
-Epoch 080: | Loss: 0.51743 | Acc: 74.333
-Epoch 081: | Loss: 0.50932 | Acc: 74.889
-Epoch 082: | Loss: 0.51320 | Acc: 74.667
-Epoch 083: | Loss: 0.50999 | Acc: 74.889
-Epoch 084: | Loss: 0.50784 | Acc: 75.000
-Epoch 085: | Loss: 0.51140 | Acc: 74.667
-Epoch 086: | Loss: 0.51056 | Acc: 74.778
-Epoch 087: | Loss: 0.50838 | Acc: 75.222
-Epoch 088: | Loss: 0.50881 | Acc: 74.778
-Epoch 089: | Loss: 0.50549 | Acc: 75.111
-Epoch 090: | Loss: 0.50645 | Acc: 75.111
-Epoch 091: | Loss: 0.50663 | Acc: 75.111
-Epoch 092: | Loss: 0.50444 | Acc: 75.222
-Epoch 093: | Loss: 0.51123 | Acc: 74.778
-Epoch 094: | Loss: 0.51022 | Acc: 75.000
-Epoch 095: | Loss: 0.50524 | Acc: 75.111
-Epoch 096: | Loss: 0.50569 | Acc: 75.222
-Epoch 097: | Loss: 0.50765 | Acc: 74.889
-Epoch 098: | Loss: 0.50853 | Acc: 75.111
-Epoch 099: | Loss: 0.50875 | Acc: 75.111
-Epoch 100: | Loss: 0.50744 | Acc: 75.222
-Epoch 101: | Loss: 0.50715 | Acc: 75.111
-Epoch 102: | Loss: 0.50600 | Acc: 75.333
-Epoch 103: | Loss: 0.50341 | Acc: 75.333
-Epoch 104: | Loss: 0.50240 | Acc: 75.556
---- 2602.2365729808807 seconds ---
+Epoch 2 Validation Loss Decreased Acc:66.904-->0.552815--->0.512585-->Saving Model
+Epoch 3 Validation Loss Decreased Acc:73.423-->0.575288--->0.449231-->Saving Model
+Epoch 4 Validation Loss Decreased Acc:74.411-->0.479491--->0.428713-->Saving Model
+Epoch 5 Validation Loss Decreased Acc:75.048-->0.450773--->0.435156-->
+Epoch 6 Validation Loss Decreased Acc:75.646-->0.377374--->0.412133-->Saving Model
+Epoch 7 Validation Loss Decreased Acc:76.147-->0.537479--->0.416081-->
+Epoch 8 Validation Loss Decreased Acc:76.384-->0.561371--->0.377262-->Saving Model
+Epoch 9 Validation Loss Decreased Acc:76.688-->0.371672--->0.383850-->
+Epoch 10 Validation Loss Decreased Acc:76.983-->0.519076--->0.410310-->
+Epoch 11 Validation Loss Decreased Acc:77.091-->0.380320--->0.393388-->
+Epoch 12 Validation Loss Decreased Acc:77.297-->0.629673--->0.395623-->
+Epoch 13 Validation Loss Decreased Acc:77.536-->0.334559--->0.394541-->
+Epoch 14 Validation Loss Decreased Acc:77.616-->0.529153--->0.371015-->Saving Model
+Epoch 15 Validation Loss Decreased Acc:77.730-->0.486953--->0.381790-->
+Epoch 16 Validation Loss Decreased Acc:77.938-->0.333381--->0.392126-->
+Epoch 17 Validation Loss Decreased Acc:78.017-->0.327595--->0.406386-->
+Epoch 18 Validation Loss Decreased Acc:78.141-->0.554334--->0.423796-->
+Epoch 19 Validation Loss Decreased Acc:78.223-->0.401241--->0.412676-->
+Epoch 20 Validation Loss Decreased Acc:78.401-->0.501324--->0.374328-->
+Epoch 21 Validation Loss Decreased Acc:78.490-->0.294069--->0.391872-->
+Epoch 22 Validation Loss Decreased Acc:78.450-->0.462439--->0.410247-->
+Epoch 23 Validation Loss Decreased Acc:78.598-->0.392929--->0.382388-->
+Epoch 24 Validation Loss Decreased Acc:78.694-->0.421560--->0.386381-->
+Epoch 25 Validation Loss Decreased Acc:78.856-->0.486693--->0.428896-->
+Epoch 26 Validation Loss Decreased Acc:78.881-->0.430846--->0.417900-->
+Epoch 27 Validation Loss Decreased Acc:78.967-->0.340234--->0.372284-->
+Epoch 28 Validation Loss Decreased Acc:78.932-->0.728972--->0.381844-->
+Epoch 29 Validation Loss Decreased Acc:79.000-->0.513512--->0.405216-->
+Epoch 30 Validation Loss Decreased Acc:79.044-->0.424390--->0.385974-->
+Epoch 31 Validation Loss Decreased Acc:79.117-->0.510589--->0.390730-->
+Epoch 32 Validation Loss Decreased Acc:79.179-->0.244007--->0.370976-->Saving Model
+Epoch 33 Validation Loss Decreased Acc:79.232-->0.408333--->0.380991-->
+Epoch 34 Validation Loss Decreased Acc:79.336-->0.481351--->0.345100-->Saving Model
+Epoch 35 Validation Loss Decreased Acc:79.379-->0.581584--->0.404661-->
+Epoch 36 Validation Loss Decreased Acc:79.349-->0.374070--->0.385309-->
+Epoch 37 Validation Loss Decreased Acc:79.399-->0.367105--->0.357443-->
+Epoch 38 Validation Loss Decreased Acc:79.537-->0.326794--->0.390972-->
+Epoch 39 Validation Loss Decreased Acc:79.512-->0.516265--->0.383852-->
+Epoch 40 Validation Loss Decreased Acc:79.532-->0.650292--->0.382904-->
+Epoch 41 Validation Loss Decreased Acc:79.521-->0.475916--->0.394541-->
+Epoch 42 Validation Loss Decreased Acc:79.595-->0.573640--->0.424742-->
+Epoch 43 Validation Loss Decreased Acc:79.686-->0.248285--->0.360041-->
+Epoch 44 Validation Loss Decreased Acc:79.646-->0.355117--->0.366667-->
+Epoch 45 Validation Loss Decreased Acc:79.593-->0.443068--->0.354382-->
+Epoch 46 Validation Loss Decreased Acc:79.658-->0.410888--->0.377201-->
+Epoch 47 Validation Loss Decreased Acc:79.726-->0.371731--->0.380181-->
+Epoch 48 Validation Loss Decreased Acc:79.618-->0.621653--->0.384407-->
+Epoch 49 Validation Loss Decreased Acc:79.735-->0.415622--->0.380247-->
+Epoch 50 Validation Loss Decreased Acc:79.781-->0.323288--->0.380627-->
+Epoch 51 Validation Loss Decreased Acc:79.752-->0.456575--->0.364360-->
+Epoch 52 Validation Loss Decreased Acc:79.847-->0.326206--->0.368253-->
+Epoch 53 Validation Loss Decreased Acc:79.890-->0.539731--->0.352737-->
+Epoch 54 Validation Loss Decreased Acc:79.863-->0.599680--->0.418232-->
+Epoch 55 Validation Loss Decreased Acc:79.886-->0.531386--->0.373322-->
+Epoch 56 Validation Loss Decreased Acc:79.986-->0.358459--->0.392160-->
+Epoch 57 Validation Loss Decreased Acc:79.964-->0.535845--->0.369990-->
+Epoch 58 Validation Loss Decreased Acc:80.004-->0.615837--->0.392106-->
+Epoch 59 Validation Loss Decreased Acc:79.931-->0.241891--->0.394474-->
+Epoch 60 Validation Loss Decreased Acc:80.079-->0.418994--->0.381514-->
+Epoch 61 Validation Loss Decreased Acc:80.070-->0.404157--->0.371996-->
+Epoch 62 Validation Loss Decreased Acc:80.107-->0.333617--->0.392070-->
+Epoch 63 Validation Loss Decreased Acc:80.080-->0.438395--->0.380504-->
+Epoch 64 Validation Loss Decreased Acc:80.099-->0.737843--->0.362838-->
+Epoch 65 Validation Loss Decreased Acc:80.072-->0.413008--->0.384228-->
+Epoch 66 Validation Loss Decreased Acc:80.167-->0.445852--->0.375388-->
+Epoch 67 Validation Loss Decreased Acc:80.206-->0.399697--->0.370288-->
+Epoch 68 Validation Loss Decreased Acc:80.310-->0.374664--->0.398042-->
+Epoch 69 Validation Loss Decreased Acc:80.240-->0.490355--->0.328329-->Saving Model
+Epoch 70 Validation Loss Decreased Acc:80.305-->0.439123--->0.396498-->
+Epoch 71 Validation Loss Decreased Acc:80.286-->0.297299--->0.383853-->
+Epoch 72 Validation Loss Decreased Acc:80.274-->0.383004--->0.360983-->
+Epoch 73 Validation Loss Decreased Acc:80.319-->0.359011--->0.378926-->
