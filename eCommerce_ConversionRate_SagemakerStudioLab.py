@@ -22,7 +22,7 @@ import time
 EPOCHS = 104
 BATCH_SIZE = 32
 LEARNING_RATE = 0.0001
-TRAIN_MODEL = 0
+TRAIN_MODEL = 1
 
 # Define Custom Dataloaders
 class TrainData(Dataset):
