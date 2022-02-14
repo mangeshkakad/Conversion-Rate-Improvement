@@ -23,9 +23,9 @@ import habana_frameworks.torch.core as htcore
 import time
 
 # Model Parameters
-EPOCHS = 1428
-BATCH_SIZE = 1200
-LEARNING_RATE = 0.001
+EPOCHS = 104
+BATCH_SIZE = 32
+LEARNING_RATE = 0.0001
 TRAIN_MODEL = 1
 
 # Define Custom Dataloaders
