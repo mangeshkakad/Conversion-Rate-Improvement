@@ -19,7 +19,7 @@ from sklearn.metrics import confusion_matrix
 import time
 
 # Model Parameters
-EPOCHS = 1248
+EPOCHS = 104
 BATCH_SIZE = 32
 LEARNING_RATE = 0.0001
 TRAIN_MODEL = 0
