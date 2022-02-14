@@ -19,9 +19,9 @@ from sklearn.metrics import confusion_matrix
 import time
 
 # Model Parameters
-EPOCHS = 1428
-BATCH_SIZE = 1200
-LEARNING_RATE = 0.001
+EPOCHS = 1248
+BATCH_SIZE = 32
+LEARNING_RATE = 0.0001
 TRAIN_MODEL = 0
 
 # Define Custom Dataloaders
@@ -170,8 +170,8 @@ def build_model(train_loader,validation_loader,pred_loader):
     model.to(device)
     print(model)
     criterion = nn.BCEWithLogitsLoss()
-    #optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
+    optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    #optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
 
     start_time = time.time()
     min_valid_loss = np.inf
@@ -208,17 +208,17 @@ def build_model(train_loader,validation_loader,pred_loader):
             valid_loss = criterion(target, y_batch.unsqueeze(1))
             acc = binary_acc(target, y_batch.unsqueeze(1))
 
-        print(f'Epoch {e+1} \t\t Training Loss: {train_loss / len(train_loader)} \t\t Validation Loss: {valid_loss / len(validation_loader)}')
-        print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
+        #print(f'Epoch {e+1} \t\t Training Loss: {train_loss / len(train_loader)} \t\t Validation Loss: {valid_loss / len(validation_loader)}')
+        #print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
 
         if min_valid_loss > valid_loss:
-            print(f'Validation Loss Decreased({min_valid_loss:.6f}--->{valid_loss:.6f}) \t Saving The Model')
+            print(f'Epoch {e+1} Validation Loss Decreased Acc:{epoch_acc/len(train_loader):.3f}-->{train_loss:.6f}--->{valid_loss:.6f}-->Saving Model')
             min_valid_loss = valid_loss
             # Saving State Dict
             torch.save(model, '/home/studio-lab-user/eCommerce Conversion Rate Improvement/MODEL/eCommerce_ConversionRate_New')
-        #print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
+        else:
+            print(f'Epoch {e+1} Validation Loss Decreased Acc:{epoch_acc / len(train_loader):.3f}-->{train_loss:.6f}--->{valid_loss:.6f}-->')   
          
-    #torch.save(model, '/home/studio-lab-user/eCommerce Conversion Rate Improvement/MODEL/eCommerce_ConversionRate_New')
     print("--- %s seconds ---" % (time.time() - start_time))
     return model,device
 
