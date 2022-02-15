@@ -23,7 +23,7 @@ import habana_frameworks.torch.core as htcore
 import time
 
 # Model Parameters
-EPOCHS = 104
+EPOCHS = 24
 BATCH_SIZE = 32
 LEARNING_RATE = 0.0001
 TRAIN_MODEL = 1
@@ -174,8 +174,8 @@ def build_model(train_loader,validation_loader,pred_loader):
     model.to(device)
     print(model)
     criterion = nn.BCEWithLogitsLoss()
-    #optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-    optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
+    optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    #optimizer = optim.SGD(model.parameters(), lr=LEARNING_RATE)
 
     start_time = time.time()
     min_valid_loss = np.inf
@@ -202,24 +202,18 @@ def build_model(train_loader,validation_loader,pred_loader):
             epoch_loss += train_loss.item()
             epoch_acc += acc.item()
 
-
-
+        '''
         #New code
-        valid_loss = 0.0
+        valid_loss,min_valid_loss = 0.0,0.0
         model.eval()     # Optional when not using Model Specific layer
-        device = torch.device("hpu")
+        #device = torch.device("hpu")
         for X_batch,y_batch in validation_loader:
-            device = torch.device("hpu")
-
             X_batch, y_batch = X_batch.to(device), y_batch.to(device)
             target = model(X_batch)
-            valid_loss = criterion(target, y_batch.unsqueeze(1))
-            acc = binary_acc(target, y_batch.unsqueeze(1))
-
-        #print(f'Epoch {e+1} \t\t Training Loss: {train_loss / len(train_loader)} \t\t Validation Loss: {valid_loss / len(validation_loader)}')
-        #print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
-
-        if min_valid_loss > valid_loss:
+            #y_batch = y_batch.unsqueeze(1)
+           # valid_loss = criterion(target, y_batch)
+           # acc = binary_acc(target, y_batch.unsqueeze(1))
+        if min_valid_loss == valid_loss:
             #print(str(min_valid_loss) +"---->" +str(valid_loss) +"Saving The Model")
             #print(valid_loss)
             min_valid_loss = valid_loss
@@ -230,10 +224,11 @@ def build_model(train_loader,validation_loader,pred_loader):
             model1 = model
             print("Saving Model....")
         #print(f'Epoch {e + 0:03}: | Loss: {epoch_loss / len(train_loader):.5f} | Acc: {epoch_acc / len(train_loader):.3f}')
-
+        '''
+        print("Training Model....")
     #torch.save(model, '/home/studio-lab-user/eCommerce Conversion Rate Improvement/MODEL/eCommerce_ConversionRate_New')
     print("--- %s seconds ---" % (time.time() - start_time))
-    return model1,device
+    return model,device
 
 def read_predictionfile(filename):
     le = preprocessing.LabelEncoder()
